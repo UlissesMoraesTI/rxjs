@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/@reactivex/rxjs@6.3.3/dist/global/rxjs.umd.js"></script>
+    <title>Observables</title>
+</head>
+
+<body>
+
+    <script>
+        const {
+            Observable
+        } = rxjs;
+        Promise.resolve(50)
+            .then(num => console.log('Promise', num));
+        //Resultado:50
+
+        Observable.create((observer) => {
+            observer.next(52);
+        }).subscribe(num => console.log('Observable', num));
+        //Resultado:52
+    </script>
+
+</body>
+
+</html>
