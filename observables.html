@@ -20,9 +20,11 @@
         //Resultado:50
 
         Observable.create((observer) => {
+            observer.next(51);
             observer.next(52);
+            observer.next(53);
         }).subscribe(num => console.log('Observable', num));
-        //Resultado:52
+        //Resultados:51, 52, 53
     </script>
 
 </body>

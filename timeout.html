@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/@reactivex/rxjs@6.3.3/dist/global/rxjs.umd.js"></script>
+    <title>TimeOut</title>
+</head>
+
+<body>
+
+    <script>
+        const {
+            Observable
+        } = rxjs;
+        Promise.resolve(50)
+            .then(num => console.log('Promise', num));
+        //Resultado:50
+
+        const abacaxi = Observable.create((observer) => {
+            console.log('Iniciando 1ª. Bateria');
+            observer.next(51);
+            observer.next(52);
+            observer.next(53);
+        })
+
+        setTimeout(() => {
+            abacaxi.subscribe(num => console.log('Observable', num));
+        }, 3000);
+
+        const abacaxi2 = Observable.create((observer) => {
+            console.log('Iniciando 2ª. Bateria');
+            observer.next(61);
+            observer.next(62);
+            observer.next(63);
+        })
+
+        setTimeout(() => {
+            abacaxi2.subscribe(num => console.log('Observable', num));
+        }, 6000);
+
+
+        const abacaxi3 = Observable.create((observer) => {
+            console.log('Iniciando 3ª. Bateria');
+            observer.next(71);
+            observer.next(72);
+            observer.next(73);
+        })
+
+        setTimeout(() => {
+            abacaxi3.subscribe(num => console.log('Observable', num));
+        }, 9000);
+
+        //Resultados:51, 52, 53
+        //Obs. "const" De:"abacaxi" Para:"observable"
+    </script>
+
+</body>
+
+</html>
