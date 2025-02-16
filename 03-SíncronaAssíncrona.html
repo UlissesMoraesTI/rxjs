@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/@reactivex/rxjs@6.3.3/dist/global/rxjs.umd.js"></script>
+    <title>TimeOut</title>
+</head>
+
+<body>
+
+    <script>
+        const {
+            Observable
+        } = rxjs;
+        const {
+            share
+        } = rxjs.operators;
+        const promise = new Promise((resolve) => {
+            resolve(1);
+        });
+
+        const observer = Observable.create((observer) => {
+            observer.next(1);
+            observer.next(2);
+            observer.next(3);
+            observer.next(4);
+            observer.next(5);
+            observer.next(6);
+            setTimeout(() => observer.next(7), 3000);
+        });
+
+        promise.then(num => console.log('Promise', num));
+        console.log('depois da promise');
+        observer.subscribe(num => console.log('Observable', num));
+        console.log('depois do observable');
+
+        //setTimeout(() => {
+        //    promise.then(num => console.log('Promise', num));
+        //    observer.subscribe(num => console.log('Observable', num));
+        //}, 2000);
+    </script>
+
+</body>
+
+</html>
